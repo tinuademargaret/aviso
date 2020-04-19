@@ -1,10 +1,13 @@
 const route = require('express').Router();
+// const messageService = require('../services/message.service');
 
+module.exports = async(parentRouter) => {
 
-module.exports = (parentRouter) => {
+    route.post('/message', async(req, res, next) =>{
+        data = req.body
+        
+        res.send('hey')
 
-    route.get('/message', async(req, res, next) =>{
-        return 'Hi'
     })
 
 parentRouter.use('/send', route);
