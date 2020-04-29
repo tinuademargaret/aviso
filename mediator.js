@@ -1,12 +1,15 @@
 const redis = require('redis');
 const subscriber = redis.createClient();
-const email_service = require('./email.service');
+const publisher = redis.createClient();
 
-subscriber.subscribe('service');
+subscriber.subscribe('notificationService');
 
 console.log('ready to consume');
-subscriber.on('message', function (channel, message) {
-console.log('Message: ' + message + ' on channel: ' + channel + ' is arrive!');
-email_service(message);
-
-});
+try{
+    subscriber.on('message', function (channel, notification) {
+        console.log('Message: ' + notification + ' on channel: ' + channel + ' has arrived!');
+        publisher.publish('emailService', notification);
+    });
+}catch(error){
+    throw error
+}

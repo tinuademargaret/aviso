@@ -1,19 +1,24 @@
 const route = require('express').Router();
 const messageService = require('../services/message.service');
-var redis = require('redis');
-var publisher = redis.createClient()
+const ms = new messageService();
 
 module.exports = async(parentRouter) => {
 
     route.post('/message', async(req, res, next) =>{
-        data = req.body
-        
-        messageService(data)
-        // publisher.publish('service', message);
-        res.send('ok')
-
-    })
-
+        try{
+            data = req.body
+            ms.saveMessage(data)
+            await ms.publishMessage(data.id)
+            const response = {
+                status : 200,
+                message : 'succesful request'
+                }
+            return res.json(response)
+        }catch(error){
+            return next(error)
+        }
+    });
+    
 parentRouter.use('/send', route);
 
 }
