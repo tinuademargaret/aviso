@@ -2,7 +2,7 @@ const routes = require('../routes');
 const cors =  require('cors');
 const bodyParser =  require('body-parser');
 const config = require('../config');
-// const redis = require('redis');
+const redis = require('redis');
 const RedisSMQ = require('rsmq');
 const rsmq = new  RedisSMQ({
     host: config.REDIS_HOST,
@@ -11,7 +11,7 @@ const rsmq = new  RedisSMQ({
     realtime: true
     // password: REDIS_PASSWORD
 })
-// const redisClient = redis.createClient();
+const redisClient = redis.createClient();
 
 
 function startServer(app){
@@ -19,7 +19,7 @@ function startServer(app){
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    rsmq.createQueue({qname: config.QUEUENAME}, (err, resp) =>{
+    rsmq.createQueue({qname: config.QUEUENAME1}, (err, resp) =>{
         if (err){
             if (err !== "queueExists"){
                 console.error(err)
@@ -31,13 +31,24 @@ function startServer(app){
         }
         if (resp === 1){console.log('queue created')}
     })
-
-    // redisClient.on('connect', function(){
-        // console.log('connected to redis')
-    // });
-    // redisClient.on('error', function(err){
-        // console.log('error connecting to redis' + err)
-    // });
+    rsmq.createQueue({qname: config.QUEUENAME2}, (err, resp) =>{
+        if (err){
+            if (err !== "queueExists"){
+                console.error(err)
+                return;
+            }
+            else{
+                console.log('The queue exists')
+            }
+        }
+        if (resp === 1){console.log('queue created')}
+    })
+    redisClient.on('connect', function(){
+        console.log('connected to redis')
+    });
+    redisClient.on('error', function(err){
+        console.log('error connecting to redis' + err)
+    });
     //mount the parent route on app
     app.use('/', routes);
 

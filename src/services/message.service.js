@@ -50,7 +50,7 @@ class messageService{
         console.log(notification);
         try{
         notification = JSON.stringify(notification)
-        publisher.sendMessage({qname:config.QUEUENAME, message: notification}, (err) => {
+        publisher.sendMessage({qname:config.QUEUENAME1, message: notification}, (err) => {
             if (err){
                 console.error(err);
                 return;

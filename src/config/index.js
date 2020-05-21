@@ -18,5 +18,6 @@ module.exports = {
     REDIS_HOST : process.env.REDIS_HOST,
     REDIS_PORT : process.env.REDIS_PORT,
     NAMESPACE : process.env.NAMESPACE,
-    QUEUENAME : process.env.QUEUENAME
+    QUEUENAME1 : process.env.QUEUENAME1,
+    QUEUENAME2 : process.env.QUEUENAME2
 }
