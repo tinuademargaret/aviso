@@ -16,7 +16,7 @@ class messageService{
 
     saveMessage(data){
         const newMessage = new message(data)
-        newMessage.save(function(err){
+        newMessage.save(function(err, result){
             if(err){
                 throw new CustomError({
                     name : 'FieldError',
@@ -24,10 +24,12 @@ class messageService{
                     message: 'could not save message to db'
                 })
             }
+            return result._id;
         })
+        
     }
     publishMessage(id){
-        message.findOne({'id':id}).exec(
+        message.findById(id).exec(
             function(err, data){
                 if(err){
                     throw new CustomError({

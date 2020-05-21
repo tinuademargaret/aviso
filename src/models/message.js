@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const message = new schema({
-    id : {type:Number, required:true},
     body : {type:String, required:true},
     sender : {type: String, required:true},
     summary : {type: String, required:false},
