@@ -1,5 +1,13 @@
-const redis = require('redis');
-const publisher = redis.createClient();
+const config = require('../config');
+const RedisSMQ = require('rsmq');
+const publisher = new  RedisSMQ({
+    host: config.REDIS_HOST,
+    port: config.REDIS_PORT,
+    ns: config.NAMESPACE,
+    realtime: true
+    // password: REDIS_PASSWORD
+})
+// const publisher = redis.createClient();
 const message = require('../models/message');
 const CustomError = require('../utils/error.helpers');
 
@@ -40,7 +48,14 @@ class messageService{
         console.log(notification);
         try{
         notification = JSON.stringify(notification)
-        publisher.publish('notificationService', notification);
+        publisher.sendMessage({qname:config.QUEUENAME, message: notification}, (err) => {
+            if (err){
+                console.error(err);
+                return;
+            }
+        })
+        console.log('message published to mediator successfully')
+        // publisher.publish('notificationService', notification);
         message.findByIdAndUpdate(id, {sent:true})
         }catch(error){
             throw error;
