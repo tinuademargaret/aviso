@@ -17,5 +17,6 @@ module.exports = {
     API_KEY: process.env.API_KEY,
     REDIS_HOST : process.env.REDIS_HOST,
     REDIS_PORT : process.env.REDIS_PORT,
-    NAMESPACE : process.env.NAMESPACE
+    NAMESPACE : process.env.NAMESPACE,
+    QUEUENAME : process.env.QUEUENAME
 }
