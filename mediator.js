@@ -16,7 +16,7 @@ console.log('ready to consume');
 try{
     subscriber.on('message', function (channel, notification) {
         console.log('Message: ' + notification + ' on channel: ' + channel + ' has arrived!');
-        mediator.receiveMessage({qname:config.QUEUENAME1}, (err, resp) =>{
+        mediator.popMessage({qname:config.QUEUENAME1}, (err, resp) =>{
             if(err){
                 console.error('consumer error: ' + err)
             }
