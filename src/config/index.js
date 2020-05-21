@@ -14,6 +14,8 @@ module.exports = {
     EMAIL_ADDRESS: process.env.EMAIL_ADDRESS,
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
     DOMAIN_NAME: process.env.DOMAIN_NAME,
-    API_KEY: process.env.API_KEY
-
+    API_KEY: process.env.API_KEY,
+    REDIS_HOST : process.env.REDIS_HOST,
+    REDIS_PORT : process.env.REDIS_PORT,
+    NAMESPACE : process.env.NAMESPACE
 }

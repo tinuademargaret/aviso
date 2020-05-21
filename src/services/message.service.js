@@ -28,7 +28,6 @@ class messageService{
                         message : `could not find message with id ${id}`,
                     })
                 }
-                
                 return JSON.stringify(data)
              } );
         var notification = {

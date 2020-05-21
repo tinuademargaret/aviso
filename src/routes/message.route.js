@@ -7,7 +7,7 @@ module.exports = async(parentRouter) => {
     route.post('/message', async(req, res, next) =>{
         try{
             data = req.body
-            ms.saveMessage(data)
+            await ms.saveMessage(data)
             await ms.publishMessage(data.id)
             const response = {
                 status : 200,

@@ -4,6 +4,7 @@ const bodyParser =  require('body-parser');
 const redis = require('redis');
 const redisClient = redis.createClient();
 
+
 function startServer(app){
     //mount third party middleware on app
     app.use(cors());
