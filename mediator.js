@@ -9,16 +9,13 @@ const mediator = new RedisSMQ({
 })
 const redis = require('redis');
 const subscriber = redis.createClient();
-// const publisher = redis.createClient();
-// 
-subscriber.subscribe('rsmq:rt:aviso1'); 
-// ${rsmq.ns}:rt:${config.QUEUENAME1}
+
+subscriber.subscribe(`${config.NAMESPACE}:rt:${config.QUEUENAME1}`); 
 
 console.log('ready to consume');
 try{
     subscriber.on('message', function (channel, notification) {
         console.log('Message: ' + notification + ' on channel: ' + channel + ' has arrived!');
-        // publisher.publish('emailService', notification);
         mediator.receiveMessage({qname:config.QUEUENAME1}, (err, resp) =>{
             if(err){
                 console.error('consumer error: ' + err)
