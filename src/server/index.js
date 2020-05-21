@@ -29,7 +29,7 @@ function startServer(app){
                 console.log('The queue exists')
             }
         }
-        if (resp == 1){console.log('queue created')}
+        if (resp === 1){console.log('queue created')}
     })
 
     // redisClient.on('connect', function(){
