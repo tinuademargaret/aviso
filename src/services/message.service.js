@@ -7,7 +7,6 @@ const publisher = new  RedisSMQ({
     realtime: true
     // password: REDIS_PASSWORD
 })
-// const publisher = redis.createClient();
 const message = require('../models/message');
 const CustomError = require('../utils/error.helpers');
 
@@ -57,7 +56,6 @@ class messageService{
             }
         })
         console.log('message published to mediator successfully')
-        // publisher.publish('notificationService', notification);
         message.findByIdAndUpdate(id, {sent:true})
         }catch(error){
             throw error;
