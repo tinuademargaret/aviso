@@ -11,13 +11,13 @@ module.exports = {
     DB_USER: process.env.DB_USER,
     DB_PASSWORD: process.env.DB_PASSWORD,
     DB_NAME: process.env.DB_NAME,
-    EMAIL_ADDRESS: process.env.EMAIL_ADDRESS,
+    EMAIL_ADDRESS: process.env.E_A,
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
     DOMAIN_NAME: process.env.DOMAIN_NAME,
     API_KEY: process.env.API_KEY,
     REDIS_HOST : process.env.REDIS_HOST,
     REDIS_PORT : process.env.REDIS_PORT,
     NAMESPACE : process.env.NAMESPACE,
-    QUEUENAME1 : process.env.QUEUENAME1,
-    QUEUENAME2 : process.env.QUEUENAME2
+    QUEUENAME1 : process.env.NM,
+    QUEUENAME2 : process.env.MN
 }
