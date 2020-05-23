@@ -1,9 +1,9 @@
 const dotenv = require('dotenv');
 const envFound = dotenv.config({path:`.env`});
 let raw_url = new URL(process.env.REDIS_URL);
-let REDIS_HOST=raw_url.hostname;
-let REDIS_PORT=raw_url.port;
-let REDIS_PASSWORD=raw_url.password;
+var REDIS_HOST=raw_url.hostname;
+var REDIS_PORT=raw_url.port;
+var REDIS_PASSWORD=raw_url.password;
 
 if(!envFound){
     throw new Error('can\'t find .env file')
