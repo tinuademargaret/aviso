@@ -1,15 +1,13 @@
 const dotenv = require('dotenv');
 const envFound = dotenv.config({path:`.env`});
-let raw_url = new URL(process.env.REDIS_URL);
-var REDIS_HOST=raw_url.hostname;
-var REDIS_PORT=raw_url.port;
-var REDIS_PASSWORD=raw_url.password;
 
 if(!envFound){
     throw new Error('can\'t find .env file')
 }
 //set NODE_ENV to devopment by default
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+
 
 module.exports = {
     port: parseInt(process.env.PORT,10),
@@ -20,9 +18,6 @@ module.exports = {
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
     DOMAIN_NAME: process.env.DOMAIN_NAME,
     API_KEY: process.env.API_KEY,
-    REDIS_HOST : REDIS_HOST,
-    REDIS_PORT : REDIS_PORT,
-    REDIS_PASSWORD: REDIS_PASSWORD,
     NAMESPACE : process.env.NAMESPACE,
     QUEUENAME1 : process.env.NM,
     QUEUENAME2 : process.env.MN

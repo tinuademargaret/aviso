@@ -1,13 +1,15 @@
 const config = require('./src/config');
 const mailgun = require("mailgun-js");
-const RedisSMQ = require('rsmq');
-const emailer = new RedisSMQ({
-    host: config.REDIS_HOST,
-    port: config.REDIS_PORT,
-    ns: config.NAMESPACE,
-    realtime: true,
-    password: config.REDIS_PASSWORD
-})
+// const RedisSMQ = require('rsmq');
+// const emailer = new RedisSMQ({
+    // host: config.REDIS_HOST,
+    // port: config.REDIS_PORT,
+    // ns: config.NAMESPACE,
+    // realtime: true,
+    // password: config.REDIS_PASSWORD
+// })
+const { emailer } = require('./config/redis.config')
+
 const redis = require('redis');
 const subscriber = redis.createClient();
 
