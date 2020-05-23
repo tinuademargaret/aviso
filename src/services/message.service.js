@@ -4,8 +4,8 @@ const publisher = new  RedisSMQ({
     host: config.REDIS_HOST,
     port: config.REDIS_PORT,
     ns: config.NAMESPACE,
-    realtime: true
-    // password: REDIS_PASSWORD
+    realtime: true,
+    password: config.REDIS_PASSWORD
 })
 const message = require('../models/message');
 const CustomError = require('../utils/error.helpers');
