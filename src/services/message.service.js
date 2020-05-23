@@ -7,7 +7,7 @@ const config = require('../config');
     // realtime: true,
     // password: config.REDIS_PASSWORD
 // })
-const { publisher } = require('./config/redis.config')
+const { publisher } = require('../config/redis.config')
 const message = require('../models/message');
 const CustomError = require('../utils/error.helpers');
 

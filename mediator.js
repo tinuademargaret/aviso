@@ -7,7 +7,7 @@ const config = require('./src/config');
     // realtime: true,
     // password: config.REDIS_PASSWORD
 // })
-const { mediator } = require('./config/redis.config')
+const { mediator } = require('./src/config/redis.config')
 const redis = require('redis');
 const subscriber = redis.createClient();
 

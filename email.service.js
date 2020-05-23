@@ -8,7 +8,7 @@ const mailgun = require("mailgun-js");
     // realtime: true,
     // password: config.REDIS_PASSWORD
 // })
-const { emailer } = require('./config/redis.config')
+const { emailer } = require('./src/config/redis.config')
 
 const redis = require('redis');
 const subscriber = redis.createClient();
