@@ -4,22 +4,14 @@ const RSMQWorker = require( "rsmq-worker" );
 const worker2 = new RSMQWorker(config.QUEUENAME2, {interval:.1});
 const { rsmq } = require('./src/config/redis.config');
 
-// const redis = require('redis');
-// const subscriber = redis.createClient();
-// subscriber.subscribe(`${config.NAMESPACE}:rt:${config.QUEUENAME2}`);
 console.log('ready to consume');
 
-// try{
     worker2.on('message', function(msg, next, msgid){
         console.log('Message: ' + msg + 'has arrived!');
-        rsmq.popMessage({qname:config.QUEUENAME2}, (err, resp)=>{
-            if(err){
-                console.error(err);
-            }
-            if(resp.id){
+            if(msg){
                 console.log('message dequeued')
-                const notification = resp.message
-                const emailNotification = JSON.parse(notification)
+                // const notification = resp.message
+                const emailNotification = JSON.parse(msg)
                 const sender = emailNotification.sender
                 const recipient = emailNotification.recipient
                 const body = emailNotification.message
@@ -39,13 +31,10 @@ console.log('ready to consume');
             else{
                 console.log('no message queue')
             }
+            next();
         })
-        next();
-            });
+        
 
-// }catch(error){
-    // throw error
-// }
 worker2.on('error', function( err, msg ){
     console.log( "ERROR", err, msg.id );
 });
