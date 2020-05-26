@@ -6,7 +6,7 @@ const server = require('./server');
 
 server(app);
 db();
-app.listen(config.port, '127.0.0.1', err => {
+app.listen(config.port,  err => {
     if (err) {
         console.log('################################################')
         console.log(' 🚫🚫 Error occured while trying to start server 🚫🚫', err)
