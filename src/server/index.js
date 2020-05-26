@@ -37,7 +37,8 @@ function startServer(app){
             // }
         // }
         if (resp === 1){console.log('queue created')}
-    })
+    }
+})
     //mount the parent route on app
     app.use('/', routes);
 
