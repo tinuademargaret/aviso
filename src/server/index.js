@@ -2,19 +2,9 @@ const routes = require('../routes');
 const cors =  require('cors');
 const bodyParser =  require('body-parser');
 const config = require('../config/index');
-// const redis = require('redis');
 
 const { rsmq } = require('../config/redis.config')
 
-// const RedisSMQ = require('rsmq');
-// const rsmq = new  RedisSMQ({
-    // host: config.REDIS_HOST,
-    // port: config.REDIS_PORT,
-    // ns: config.NAMESPACE,
-    // realtime: true,
-    // password: config.REDIS_PASSWORD
-// })
-// const redisClient = redis.createClient();
 
 
 function startServer(app){
@@ -46,12 +36,6 @@ function startServer(app){
         }
         if (resp === 1){console.log('queue created')}
     })
-    // redisClient.on('connect', function(){
-        // console.log('connected to redis')
-    // });
-    // redisClient.on('error', function(err){
-        // console.log('error connecting to redis' + err)
-    // });
     //mount the parent route on app
     app.use('/', routes);
 

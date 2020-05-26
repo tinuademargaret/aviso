@@ -1,12 +1,4 @@
 const config = require('../config/index');
-// const RedisSMQ = require('rsmq');
-// const publisher = new  RedisSMQ({
-    // host: config.REDIS_HOST,
-    // port: config.REDIS_PORT,
-    // ns: config.NAMESPACE,
-    // realtime: true,
-    // password: config.REDIS_PASSWORD
-// })
 const { rsmq } = require('../config/redis.config')
 const message = require('../models/message');
 const CustomError = require('../utils/error.helpers');

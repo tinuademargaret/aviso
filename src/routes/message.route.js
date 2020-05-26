@@ -10,8 +10,8 @@ module.exports = async(parentRouter) => {
             savedMessageId = await ms.saveMessage(data)
             await ms.publishMessage(savedMessageId)
             const response = {
-                status : 200,
-                message : 'succesful request'
+                status : 202,
+                message : 'Accepted request'
                 }
             return res.json(response)
         }catch(error){
