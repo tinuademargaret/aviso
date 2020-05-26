@@ -12,6 +12,7 @@ function startServer(app){
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
+    try{
     rsmq.createQueue({qname: config.QUEUENAME1}, (err, resp) =>{
         if (err){
             console.log(err)
@@ -25,6 +26,7 @@ function startServer(app){
         }
         if (resp === 1){console.log('queue created')}
     })
+    
     rsmq.createQueue({qname: config.QUEUENAME2}, (err, resp) =>{
         if (err){
             console.log(err)
@@ -39,6 +41,9 @@ function startServer(app){
         if (resp === 1){console.log('queue created')}
     }
 })
+    }catch(error){
+        throw error
+    }
     //mount the parent route on app
     app.use('/', routes);
 
