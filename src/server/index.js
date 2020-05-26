@@ -14,26 +14,28 @@ function startServer(app){
     app.use(bodyParser.urlencoded({extended: true}));
     rsmq.createQueue({qname: config.QUEUENAME1}, (err, resp) =>{
         if (err){
-            if (err !== "queueExists"){
-                console.error(err)
-                return;
-            }
-            else{
-                console.log('The queue exists')
-            }
+            console.log(err)
+            // if (err !== "queueExists"){
+                // console.error(err)
+                // return;
+            // }
+            // else{
+                // console.log('The queue exists')
+            // }
         }
         if (resp === 1){console.log('queue created')}
     })
     rsmq.createQueue({qname: config.QUEUENAME2}, (err, resp) =>{
         if (err){
-            if (err !== "queueExists"){
-                console.error(err)
-                return;
-            }
-            else{
-                console.log('The queue exists')
-            }
-        }
+            console.log(err)
+            // if (err !== "queueExists"){
+                // console.error(err)
+                // return;
+            // }
+    //   /      else{
+                // console.log('The queue exists')
+            // }
+        // }
         if (resp === 1){console.log('queue created')}
     })
     //mount the parent route on app

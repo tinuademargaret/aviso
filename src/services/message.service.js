@@ -38,8 +38,6 @@ class messageService{
             time : data['time'],
             recipient : data['recipient']
         }
-        
-        console.log(notification);
         try{
         notification = JSON.stringify(notification)
         rsmq.sendMessage({qname:config.QUEUENAME1, message: notification}, (err)=>{
