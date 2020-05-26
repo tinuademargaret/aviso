@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-const config = require('./config');
-const DB_USER = config.DB_USER;
-const DB_PASSWORD = config.DB_PASSWORD;
-const DB_NAME = config.DB_NAME;
+// const config = require('./config');
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_NAME = process.env.DB_NAME;
 const url = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0-diuvg.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
 
-
+module.exports = {
+    
+}
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(client => console.log('connected to database'))
 .catch(error => {

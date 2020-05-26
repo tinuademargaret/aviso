@@ -1,26 +1,18 @@
-const config = require('./src/config');
+const config = require('./src/config/index');
 const mailgun = require("mailgun-js");
-// const RedisSMQ = require('rsmq');
-// const emailer = new RedisSMQ({
-    // host: config.REDIS_HOST,
-    // port: config.REDIS_PORT,
-    // ns: config.NAMESPACE,
-    // realtime: true,
-    // password: config.REDIS_PASSWORD
-// })
-const { emailer } = require('./src/config/redis.config')
+const RSMQWorker = require( "rsmq-worker" );
+const worker2 = new RSMQWorker(config.QUEUENAME2, {interval:.1});
+const { rsmq } = require('./src/config/redis.config');
 
-const redis = require('redis');
-const subscriber = redis.createClient();
-
-
-subscriber.subscribe(`${config.NAMESPACE}:rt:${config.QUEUENAME2}`);
+// const redis = require('redis');
+// const subscriber = redis.createClient();
+// subscriber.subscribe(`${config.NAMESPACE}:rt:${config.QUEUENAME2}`);
 console.log('ready to consume');
 
-try{
-    subscriber.on('message', function(channel, msg){
-        console.log('Message: ' + msg + ' on channel: ' + channel + ' has arrived!');
-        emailer.popMessage({qname:config.QUEUENAME2}, (err, resp)=>{
+// try{
+    worker2.on('message', function(msg, next, msgid){
+        console.log('Message: ' + msg + 'has arrived!');
+        rsmq.popMessage({qname:config.QUEUENAME2}, (err, resp)=>{
             if(err){
                 console.error(err);
             }
@@ -48,8 +40,21 @@ try{
                 console.log('no message queue')
             }
         })
-            })
-}catch(error){
-    throw error
-}
+        next();
+            });
+
+// }catch(error){
+    // throw error
+// }
+worker2.on('error', function( err, msg ){
+    console.log( "ERROR", err, msg.id );
+});
+worker2.on('exceeded', function( msg ){
+console.log( "EXCEEDED", msg.id );
+});
+worker2.on('timeout', function( msg ){
+    console.log( "TIMEOUT", msg.id, msg.rc );
+});
+worker2.start();
+
     

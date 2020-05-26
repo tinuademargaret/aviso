@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('../config/index');
 // const RedisSMQ = require('rsmq');
 // const publisher = new  RedisSMQ({
     // host: config.REDIS_HOST,
@@ -7,7 +7,7 @@ const config = require('../config');
     // realtime: true,
     // password: config.REDIS_PASSWORD
 // })
-const { publisher } = require('../config/redis.config')
+const { rsmq } = require('../config/redis.config')
 const message = require('../models/message');
 const CustomError = require('../utils/error.helpers');
 
@@ -50,10 +50,13 @@ class messageService{
         console.log(notification);
         try{
         notification = JSON.stringify(notification)
-        publisher.sendMessage({qname:config.QUEUENAME1, message: notification}, (err) => {
-            if (err){
-                console.error(err);
-                return;
+        rsmq.sendMessage({qname:config.QUEUENAME1, message: notification}, (err)=>{
+            if(err){
+                throw new CustomError({
+                    name: 'RedisPublishError',
+                    status : 400,
+                    message : `message with id ${id} failed to publish`,
+                })
             }
         })
         console.log('message published to mediator successfully')

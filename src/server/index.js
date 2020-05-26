@@ -1,8 +1,9 @@
 const routes = require('../routes');
 const cors =  require('cors');
 const bodyParser =  require('body-parser');
-const config = require('../config');
-const redis = require('redis');
+const config = require('../config/index');
+// const redis = require('redis');
+
 const { rsmq } = require('../config/redis.config')
 
 // const RedisSMQ = require('rsmq');

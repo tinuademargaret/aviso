@@ -1,11 +1,11 @@
 const express = require('express');
 const config  = require('./config');
 const app = express();
-const db = require('./db');
+const db = require('./config/db.config');
 const server = require('./server');
 
 server(app);
-
+db();
 app.listen(config.port, '127.0.0.1', err => {
     if (err) {
         console.log('################################################')

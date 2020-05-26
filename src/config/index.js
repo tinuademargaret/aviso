@@ -11,9 +11,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     port: parseInt(process.env.PORT,10),
-    DB_USER: process.env.DB_USER,
-    DB_PASSWORD: process.env.DB_PASSWORD,
-    DB_NAME: process.env.DB_NAME,
     EMAIL_ADDRESS: process.env.E_A,
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
     DOMAIN_NAME: process.env.DOMAIN_NAME,
