@@ -12,10 +12,10 @@ function startServer(app){
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    try{
-    rsmq.createQueue({qname: config.QUEUENAME1}, (err, resp) =>{
-        if (err){
-            console.log(err)
+    // try{
+    // rsmq.createQueue({qname: config.QUEUENAME1}, (err, resp) =>{
+        // if (err){
+            // console.log(err)
             // if (err !== "queueExists"){
                 // console.error(err)
                 // return;
@@ -23,13 +23,13 @@ function startServer(app){
             // else{
                 // console.log('The queue exists')
             // }
-        }
-        if (resp === 1){console.log('queue created')}
-    })
+        // }
+        // if (resp === 1){console.log('queue created')}
+    // })
     
-    rsmq.createQueue({qname: config.QUEUENAME2}, (err, resp) =>{
-        if (err){
-            console.log(err)
+    // rsmq.createQueue({qname: config.QUEUENAME2}, (err, resp) =>{
+        // if (err){
+            // console.log(err)
             // if (err !== "queueExists"){
                 // console.error(err)
                 // return;
@@ -38,13 +38,13 @@ function startServer(app){
                 // console.log('The queue exists')
             // }
         // }
-        if (resp === 1){console.log('queue created')}
-    }
-})
-    }catch(error){
+        // if (resp === 1){console.log('queue created')}
+    // }
+// })
+    // }catch(error){
         // throw error
-        console.log(error)
-    }
+        // /console.log(error)
+    // }
     //mount the parent route on app
     app.use('/', routes);
 
