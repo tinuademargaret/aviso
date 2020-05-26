@@ -42,7 +42,8 @@ function startServer(app){
     }
 })
     }catch(error){
-        throw error
+        // throw error
+        console.log(error)
     }
     //mount the parent route on app
     app.use('/', routes);
