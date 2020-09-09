@@ -13,8 +13,8 @@ Based on an Event Driven Architecture
   * JavaScript, ES6.
   * Node.js, Express Framework.
 * Database and Database client
-  * Redis
-  * redis
+  * Mongodb
+  * mongoose
 * Message Broker
   * Redis
 ## Author
